@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+// Paletas padrão do Material Design
+$pink-primary: mat.define-palette(mat.$pink-palette);
+$blue-grey-accent: mat.define-palette(mat.$blue-grey-palette);
+$warn: mat.define-palette(mat.$red-palette);
+
+// Tema claro com as paletas definidas
+$custom-light-theme: mat.define-light-theme((
+  color: (
+    primary: $pink-primary,
+    accent: $blue-grey-accent,
+    warn: $warn,
+  ),
+));
+
+// Aplica o tema a todos os componentes Angular Material
+@include mat.all-component-themes($custom-light-theme);
+
+// Estilos globais do app para fundo branco e texto escuro
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #303030;     // fundo branco limpo
+  color: #fff; // texto padrão do Material Design
+}

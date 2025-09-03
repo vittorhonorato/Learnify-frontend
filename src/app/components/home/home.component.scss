@@ -1,0 +1,116 @@
+$primary-color: #1c6572; // cor destaque da identidade visual
+$spacing: 24px;
+$card-radius: 12px;
+
+.home-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: $spacing 16px;
+  text-align: center;
+
+  // centralizar verticalmente e horizontalmente
+  min-height: calc(100vh - var(--toolbar-height, 64px)); // considera a toolbar se existir
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 2.25rem;
+    margin: 0 0 8px 0;
+    font-weight: 600;
+
+    .highlight {
+      color: $primary-color;
+    }
+  }
+
+  .hero {
+    // empurra o bloco do hero mais acima do centro (apenas ele)
+    margin-bottom: 18px;
+    transform: translateY(-12%);
+    text-align: center;
+
+    @media (max-width: 600px) {
+      transform: translateY(-6%);
+    }
+  }
+
+  p.lead {
+    margin: 0 auto;
+    max-width: 700px;
+    font-size: 1.05rem;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  // Cards responsivos usando grid
+  .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: $spacing;
+  margin-top: 30px;
+  align-items: start;
+
+  // garante que os cards fiquem centralizados e com limite de largura
+  width: 100%;
+  max-width: 920px;
+  }
+
+  // Card estilo baseado no Material
+  .home-card {
+  border-radius: $card-radius;
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(16,24,40,0.08);
+  width: 100%;
+  max-width: 320px;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 30px rgba(16,24,40,0.18);
+    }
+
+    mat-card-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    mat-card-content {
+      font-size: 0.95rem;
+      color: rgba(0, 0, 0, 0.65);
+      min-height: 56px;
+    }
+
+    mat-card-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 12px;
+
+      button {
+        border-radius: 8px;
+      }
+    }
+  }
+
+
+  // Suporte para tema escuro (quando body.dark-theme estiver ativo)
+  body.dark-theme & {
+    .lead { color: rgba(255,255,255,0.85); }
+
+    .home-card {
+      background: #1e1e1e;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+
+      mat-card-content {
+        color: rgba(255,255,255,0.78);
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.6rem; }
+    .lead { font-size: 0.98rem; }
+  }
+}

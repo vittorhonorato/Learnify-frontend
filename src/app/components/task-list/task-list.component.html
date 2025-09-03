@@ -1,0 +1,48 @@
+<!-- Carregando -->
+<div *ngIf="loading" class="loading-container">
+  <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
+  <span class="loading-text">Carregando tarefas...</span>
+</div>
+
+<!-- Nenhuma tarefa encontrada -->
+<div *ngIf="!loading && tasks.length === 0" class="empty-state">
+  <mat-icon>assignment_turned_in</mat-icon>
+  <p>Nenhuma tarefa encontrada.</p>
+</div>
+
+<!-- Lista de tarefas em grid de cards -->
+<div *ngIf="!loading && tasks.length > 0" class="task-grid">
+  <mat-card class="task-card" *ngFor="let task of tasks">
+    <mat-card-header>
+      <mat-icon mat-card-avatar [ngClass]="getPriorityClass(task.priority)">task</mat-icon>
+      <mat-card-title>{{ task.title }}</mat-card-title>
+      <mat-card-subtitle>
+        Status: {{ task.status }} |
+        Prioridade: {{ task.priority | titlecase }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p>{{ task.description }}</p>
+      <p><strong>Prazo:</strong> {{ task.deadline | date:'dd/MM/yyyy' }}</p>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-icon-button color="accent">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<!-- Botão Nova Tarefa -->
+<div class="new-task-btn">
+  <button mat-raised-button color="primary" (click)="openNewTaskDialog()">
+    Nova Tarefa
+  </button>
+</div>
+
+

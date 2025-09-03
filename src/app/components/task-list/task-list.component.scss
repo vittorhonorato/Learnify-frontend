@@ -1,0 +1,61 @@
+// Container do grid responsivo de cards
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+// Card individual
+.task-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+// Estado de carregamento
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  color: #ccc;
+  font-size: 1.1rem;
+
+  .loading-text {
+    margin-top: 12px;
+  }
+}
+
+// Estado vazio
+.empty-state {
+  text-align: center;
+  margin-top: 60px;
+  color: #999;
+
+  mat-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+}
+
+// Botão Nova Tarefa
+.new-task-btn {
+  text-align: center;
+  margin: 32px 0;
+}
+
+// Estilização por prioridade
+.high {
+  color: #f44336; // vermelho
+}
+
+.medium {
+  color: #ff9800; // laranja
+}
+
+.low {
+  color: #4caf50; // verde
+}

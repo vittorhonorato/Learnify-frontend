@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Criar Nova Tarefa</h2>
+
+<form [formGroup]="taskForm" (ngSubmit)="onSave()">
+  <mat-dialog-content>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Título</mat-label>
+      <input matInput formControlName="title" required />
+      <mat-error *ngIf="taskForm.get('title')?.hasError('required')">Título é obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Descrição</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option value="pendente">Pendente</mat-option>
+        <mat-option value="em andamento">Em andamento</mat-option>
+        <mat-option value="concluída">Concluída</mat-option>
+      </mat-select>
+      <mat-error *ngIf="taskForm.get('status')?.hasError('required')">Status é obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Prioridade</mat-label>
+      <mat-select formControlName="priority" required>
+        <mat-option value="baixa">Baixa</mat-option>
+        <mat-option value="média">Média</mat-option>
+        <mat-option value="alta">Alta</mat-option>
+      </mat-select>
+      <mat-error *ngIf="taskForm.get('priority')?.hasError('required')">Prioridade é obrigatória</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Prazo</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="deadline" required />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="taskForm.get('deadline')?.hasError('required')">Prazo é obrigatório</mat-error>
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid">Salvar</button>
+  </mat-dialog-actions>
+</form>
